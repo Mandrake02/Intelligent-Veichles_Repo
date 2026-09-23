@@ -26,12 +26,15 @@ sudo apt-get install clang
       3. Compile the agent
    
    - In a wsl terminal
-      1. Compile the agent using the following command:
+      1. Configure and compile the agent using the following commands:
          ```bash
-         cmake .
-         make
+         cmake -B build
+         cmake --build build
          ```
-5. Run the agent
+5. Run the agent from the `Agent` directory:
+```bash
+./bin/basic_agent
+```
 
 #### Setup using visual studio:
 1. Install visual studio professional (https://visualstudio.microsoft.com/it/vs/professional/)
@@ -42,7 +45,10 @@ sudo apt-get install clang
      1. Open the folder project (in CLion: create Debug and Release profile);
      2. Select the correct compiler Visual Studio (https://www.jetbrains.com/help/clion/how-to-create-toolchain-in-clion.html)
      3. Compile the agent
-5. Run the agent
+5. Run the agent from the `Agent` directory:
+```bash
+./bin/basic_agent
+```
 
 #### Setup using MinGW
 1. Install MSYS2 https://www.msys2.org/
@@ -66,13 +72,16 @@ pacman -S mingw-w64-x86_64-make
      ```
      2. run cmake:
      ```bash
-     cmake -G "MSYS Makefiles"
+   cmake -G "MSYS Makefiles" -B build
      ```
      3. Build the agent:
      ```bash
-     cmake --build .
+   cmake --build build
      ```
-5. Run the agent
+5. Run the agent from the `Agent` directory:
+```bash
+./bin/basic_agent.exe
+```
 
 ### Linux
 1. Open a Linux shell and run:
@@ -88,12 +97,15 @@ sudo apt-get install clang
       2. Select the correct compiler WLS (follow the guide https://www.jetbrains.com/help/clion/how-to-create-toolchain-in-clion.html)
       3. Compile the agent
    - In the linux terminal:
-      1. Compile the agent using the following command:
+      1. Configure and compile the agent using the following commands:
       ```bash
-      cmake .
-      make
+      cmake -B build
+      cmake --build build
       ```
-5. Run the agent
+   5. Run the agent from the `Agent` directory:
+   ```bash
+   ./bin/basic_agent
+   ```
 
 ### MacOs
 1. Open a shell and run:
@@ -109,9 +121,12 @@ brew install clang
       2. Select the correct compiler WLS (follow the guide https://www.jetbrains.com/help/clion/how-to-create-toolchain-in-clion.html)
       3. Compile the agent
    - In the linux terminal:
-      1. Compile the agent using the following command:
+      1. Configure and compile the agent using the following commands:
       ```bash
-      cmake .
-      make
+      cmake -B build
+      cmake --build build
       ```
-5. Run the agent
+   5. Run the agent from the `Agent` directory:
+   ```bash
+   ./bin/basic_agent
+   ```

@@ -79,8 +79,9 @@ On macOS or Linux, build the Agent from its directory with:
 
 ```bash
 cd Agent
-cmake .
-make
+cmake -B build
+cmake --build build
+./bin/basic_agent
 ```
 
 The same project can also be opened and built with CLion or another IDE with CMake support. Windows-specific setup instructions are available in [Agent/README.md](Agent/README.md).

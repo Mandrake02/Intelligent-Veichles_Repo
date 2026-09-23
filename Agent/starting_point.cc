@@ -80,7 +80,7 @@ int main(int argc, const char * argv[]) {
             // ADD AGENT CODE HERE
 
             // ADD LOW LEVEL CONTROL CODE HERE
-            manoeuvre_msg.data_struct.RequestedAcc = -0.3;
+            manoeuvre_msg.data_struct.RequestedAcc = 1.0;
             manoeuvre_msg.data_struct.RequestedSteerWhlAg = 0.0;
 
             // Write log

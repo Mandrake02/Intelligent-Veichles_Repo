@@ -12,100 +12,100 @@ syms s(t) v(t) a(t) u(t) l1(t) l2(t) l3(t);
 
 %% Define the system model by mean the relation between the variables. 
 % Plant equations
-% ode1 = ...
-% ode2 = ...
-% ode3 = ...
+ode1 = diff(s) == v;
+ode2 = diff(v) == a;
+ode3 = diff(a) == u;
 % - Use "diff()" function to derive the function (e.g. diff(s) == v)
 
 %% Define the Lagrangian and the Hamiltonian.
 % Lagrangian
-% L = 
+L = u^2;
 
 % Hamiltonian
-% H = L + ...
+H = L + l1*rhs(ode1)+l2*rhs(ode2)+l3*rhs(ode3);
 % - Use "rhs()" function for getting the right hand side 
 
 %% Solve the optimal control problem (Solving the Hamiltonian). 
 % Derivative of Hamiltonian w.r.t. the control
-% du = ...
+du = functionalDerivative(H, u);
 syms opt_u;
 % Optimal solution
-% opt_u = ...
+opt_u = solve(du==0, u(t));
 % - use "functionalDerivative()" to derive a function with respect to another function (e.g. du = functionalDerivative(H,u)) 
 % - Use "solve" and "subs()" to replace variable inside the equation
 
 %% Write the second optimality condition.
 % Second Optimality Condition
-% Dl1 = ...
-% Dl2 = ...
-% Dl3 = ...
+Dl1 = diff(l1, t) + functionalDerivative(H, s) == 0;
+Dl2 = diff(l2, t) + functionalDerivative(H, v) == 0;
+Dl3 = diff(l3, t) + functionalDerivative(H, a) == 0;
 % - Use "diff(,t)" to derive w.r.t. the time 
 %   and "functionalDerivative()" to detive w.r.t. a variable 
 
 %% Substitute the optimal solution opt_u to state equations
 % New system equation
-% ode3s = ...
+ode3s = subs(ode3, u, opt_u);
 % - Replace the ode3 equation with the solution of the optimal control problem
 
 %% Define the Boundary condition on initial state and Boundary condition on final state
 % Boundary condition on initial and final states  
-% ICs = ... 
-% FCs = ... 
+ICs = ['s(0)=0 '; 'v(0)=v0'; 'a(0)=a0'];
+FCs = ['s(tf)=sf'; 'v(tf)=vf'; 'a(tf)=af'];
 % - Write the condition as a string
 
 %% Find the solution of the OCP imposing the boundary condition
 % Solution of the optimal control problem
-% sol_opt = ...
+sol_opt = dsolve([ode1, ode2, ode3s, Dl1, Dl2, Dl3], [str2sym(ICs); str2sym(FCs)]);
 % - Use the function "dsolve([], , )" to obtain a solution of the optimal
 %   control problem
 
-disp('Optimal polynomial longitudinal position:');
-% pretty(sol_opt.s)
+%disp('Optimal polynomial longitudinal position:');
+%pretty(sol_opt.s)
 
-disp('Optimal polynomial velocity:');
-% pretty(sol_opt.v)
+%disp('Optimal polynomial velocity:');
+%pretty(sol_opt.v)
 
-disp('Optimal polynomial acceleration:');
-% pretty(sol_opt.a)
+%disp('Optimal polynomial acceleration:');
+%pretty(sol_opt.a)
 
 % Assign to functions the solutions found
 
 %% Get the optimal control solution
 % Obtain optimal control solution
-% sol_opt.j = ...
+sol_opt.j = subs(opt_u, l3, sol_opt.l3);
 % - Use the "subs" function on the opt_u with the value of l3
 
 %% Export the solution in a matlab function
-syms t v0 a0 sf vf af T  
+syms t v0 a0 sf vf af tf  
 % Create the matlab function for the solutions
-% s_opt_fun = matlabFunction(sol_opt.s,'Vars',[t,v0,a0,sf,vf,af,T],'File','s_opt.m');
-% v_opt_fun = ...
-% a_opt_fun = ...
-% j_opt_fun = ...
+s_opt_fun = matlabFunction(sol_opt.s,'Vars',[t,v0,a0,sf,vf,af,tf],'File','s_opt.m');
+v_opt_fun = matlabFunction(sol_opt.v,'Vars',[t,v0,a0,sf,vf,af,tf],'File','v_opt.m');
+a_opt_fun = matlabFunction(sol_opt.a,'Vars',[t,v0,a0,sf,vf,af,tf],'File','a_opt.m');
+j_opt_fun = matlabFunction(sol_opt.j,'Vars',[t,v0,a0,sf,vf,af,tf],'File','j_opt.m');
 % - Use the matlabFunction function to generate a matlab function using a
 %   symbolic function
 
 %% Create the matlab function for the solution using the coeffs
 c = sym('c',[1 6]);
-% coeffs_s_opt = ...
-% coeffs_v_opt = ...
-% coeffs_a_opt = ...
-% coeffs_j_opt = ...
-% coeffs_s_opt_fun = ...
-% coeffs_v_opt_fun = ...
-% coeffs_a_opt_fun = ...
-% coeffs_j_opt_fun = ...
+coeffs_s_opt = c(1) + c(2)*t + c(3)*(t^2)/2 + c(4)*(t^3)/6 + c(5)*(t^4)/24 + c(6)*(t^5)/120;
+coeffs_v_opt = diff(coeffs_s_opt, t);
+coeffs_a_opt = diff(coeffs_v_opt, t);
+coeffs_j_opt = diff(coeffs_a_opt, t);
+coeffs_s_opt_fun = matlabFunction(coeffs_s_opt, 'Vars', {t, c}, 'File', 'coeffs_s_opt.m');
+coeffs_v_opt_fun = matlabFunction(coeffs_v_opt, 'Vars', {t, c}, 'File', 'coeffs_v_opt.m');
+coeffs_a_opt_fun = matlabFunction(coeffs_a_opt, 'Vars', {t, c}, 'File', 'coeffs_a_opt.m');
+coeffs_j_opt_fun = matlabFunction(coeffs_j_opt, 'Vars', {t, c}, 'File', 'coeffs_j_opt.m');
 
 %% Export the coefficent list in a matlab function
 % the coeffs are moltiplied by [1,2,6,24,120] to obtain the value of c1, c2, c3, c4, c5
-% coef_list_var = [0,coeffs(sol_opt.s,t) .* [1,2,6,24,120]];
-% coef_list_fun = ...
+coef_list_var = [0,coeffs(sol_opt.s,t) .* [1,2,6,24,120]];
+coef_list_fun = matlabFunction(coef_list_var, 'Vars', [v0, a0, sf, vf, af, tf], 'File', 'coef_list.m');
 % - Use the matlabFunction function to generate a matlab function using a
 %   symbolic function 
 
 %% Export the total cost in a matlab function 
-% total_cost_var = simplify(int(sol_opt.j^2,t,0,T));
-% total_cost_fun = ...
+total_cost_var = simplify(int(sol_opt.j^2,t,0,tf));
+total_cost_fun = matlabFunction(total_cost_var, 'Vars', [v0, a0, sf, vf, af, tf], 'File', 'total_cost.m');
 % - Use the matlabFunction function to generate a matlab function using a
 %   symbolic function
 
@@ -121,47 +121,71 @@ vfval = 25;
 afval = 0.;
 
 %% The functions work both for vector (t_list) or number (t)
-% s_list = s_opt_fun(t_list, v0val, a0val, xfval, vfval, afval, Tmax);
-% v_list = ...
-% a_list = ...
-% j_list = ...
+s_list = s_opt_fun(t_list, v0val, a0val, xfval, vfval, afval, Tmax);
+v_list = v_opt_fun(t_list, v0val, a0val, xfval, vfval, afval, Tmax);
+a_list = a_opt_fun(t_list, v0val, a0val, xfval, vfval, afval, Tmax);
+j_list = j_opt_fun(t_list, v0val, a0val, xfval, vfval, afval, Tmax);
 
 %% The functions that used the coeflist
 coeffs = coef_list_fun(v0val, a0val, xfval, vfval, afval, Tmax);
-% coeffs_s_list = coeffs_s_opt_fun(t_list, coeffs);
-% coeffs_v_list = ...
-% coeffs_a_list = ...
-% coeffs_j_list = ...
+coeffs_s_list = coeffs_s_opt_fun(t_list, coeffs);
+coeffs_v_list = coeffs_v_opt_fun(t_list, coeffs);
+coeffs_a_list = coeffs_a_opt_fun(t_list, coeffs);
+coeffs_j_list = coeffs_j_opt_fun(t_list, coeffs);
 
 figure(1)
 %% Position
-% subplot(2,4,1)
-% plot(t_list, s_list,'b');hold on;
-% plot(t_list, coeffs_s_list,'r--');
-% grid on
-% xlabel('Time (s)','Interpreter','latex');
-% ylabel('Position $(m)$','Interpreter','latex');
+subplot(2,4,1)
+plot(t_list, s_list,'b');hold on;
+plot(t_list, coeffs_s_list,'r--');
+grid on
+xlabel('Time (s)','Interpreter','latex');
+ylabel('Position $(m)$','Interpreter','latex');
     
 %% Velocity
-% subplot(2,4,2)
-% ...
+subplot(2,4,2)
+plot(t_list, v_list,'b');hold on;
+plot(t_list, coeffs_v_list,'r--');
+grid on
+xlabel('Time (s)','Interpreter','latex');
+ylabel('Velocitty $(\frac{m}{s})$','Interpreter','latex');
     
 %% Acceleration
-% subplot(2,4,3)
-% ...
+subplot(2,4,3)
+plot(t_list, a_list,'b');hold on;
+plot(t_list, coeffs_a_list,'r--');
+grid on
+xlabel('Time (s)','Interpreter','latex');
+ylabel('Acceleration $(\frac{m}{s^2})$','Interpreter','latex');
 
 %% Control
-% subplot(2,4,4)
-% ...
+subplot(2,4,4)
+plot(t_list, j_list,'b');hold on;
+plot(t_list, coeffs_j_list,'r--');
+grid on
+xlabel('Time (s)','Interpreter','latex');
+ylabel('Jerk $(\frac{m}{s^3})$','Interpreter','latex');
     
 %% Velocity on position
-% subplot(2,4,6)
-% ...
+subplot(2,4,6)
+plot(s_list, v_list,'b');hold on;
+plot(coeffs_s_list, coeffs_v_list,'r--');
+grid on
+xlabel('Position $(m)$','Interpreter','latex');
+ylabel('Velocity $(\frac{m}{s})$','Interpreter','latex');
 
 %% Acceleration on position
-% subplot(2,4,7)
-% ...
+subplot(2,4,7)
+plot(s_list, a_list,'b');hold on;
+plot(coeffs_s_list, coeffs_a_list,'r--');
+grid on
+xlabel('Position $(m)$','Interpreter','latex');
+ylabel('Acceleration $(\frac{m}{s^2})$','Interpreter','latex');
 
 %% Control on position
-% subplot(2,4,8)
-% ...
+subplot(2,4,8)
+plot(s_list, j_list,'b');hold on;
+plot(coeffs_s_list, coeffs_j_list,'r--');
+grid on
+xlabel('Position $(m)$','Interpreter','latex');
+ylabel('Jerk $(\frac{m}{s^3})$','Interpreter','latex');

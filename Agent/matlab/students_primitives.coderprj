@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<coderProject client="MatlabCoder" containerVersion="1" createdBy="R2026b" modifiedBy="R2026b">
+  <layers>
+    <layer id="core" version="R2025a">
+      <parts>
+        <part role="testRepository">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2026a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2026b http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.core.mfz.TestRepositoryState id="1" type="coderapp.internal.core.mfz.TestRepositoryState">
+              <Tests type="coderapp.internal.core.mfz.TestSpec">
+                <Type>FILE</Type>
+                <Value>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/student_test_other_functions.m</Value>
+              </Tests>
+              <Tests type="coderapp.internal.core.mfz.TestSpec">
+                <Type>FILE</Type>
+                <Value>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/student_test_pass_stop.m</Value>
+              </Tests>
+            </coderapp.internal.core.mfz.TestRepositoryState>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+    <layer id="interface" version="R2026b">
+      <parts>
+        <part role="mainInterface">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2026a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2026b http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.interface.project.Interface id="1" type="coderapp.internal.interface.project.Interface">
+              <EntryPoints id="2" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>student_pass_primitive.m</Path>
+                </File>
+                <Name>student_pass_primitive</Name>
+                <Signatures id="3" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="4" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="6" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="7" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="8" type="coderapp.internal.interface.project.Input">
+                    <Name>vfmin</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="9" type="coderapp.internal.interface.project.Input">
+                    <Name>vfmax</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="10" type="coderapp.internal.interface.project.Input">
+                    <Name>Tmin</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="11" type="coderapp.internal.interface.project.Input">
+                    <Name>Tmax</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>6</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="12" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>student_stop_primitive.m</Path>
+                </File>
+                <Name>student_stop_primitive</Name>
+                <Signatures id="13" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="14" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="15" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="16" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>3</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="17" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>v_opt.m</Path>
+                </File>
+                <Name>v_opt</Name>
+                <Signatures id="18" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="19" type="coderapp.internal.interface.project.Input">
+                    <Name>t</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="20" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="21" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="22" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="23" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="24" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="25" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="26" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>s_opt.m</Path>
+                </File>
+                <Name>s_opt</Name>
+                <Signatures id="27" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="28" type="coderapp.internal.interface.project.Input">
+                    <Name>t</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="29" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="30" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="31" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="32" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="33" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="34" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="35" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>a_opt.m</Path>
+                </File>
+                <Name>a_opt</Name>
+                <Signatures id="36" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="37" type="coderapp.internal.interface.project.Input">
+                    <Name>t</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="38" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="39" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="40" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="41" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="42" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="43" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="44" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>j_opt.m</Path>
+                </File>
+                <Name>j_opt</Name>
+                <Signatures id="45" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="46" type="coderapp.internal.interface.project.Input">
+                    <Name>t</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="47" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="48" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="49" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="50" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="51" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="52" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="53" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>total_cost.m</Path>
+                </File>
+                <Name>total_cost</Name>
+                <Signatures id="54" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="55" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="56" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="57" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="58" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="59" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="60" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="61" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>coef_list.m</Path>
+                </File>
+                <Name>coef_list</Name>
+                <Signatures id="62" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="63" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="64" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="65" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="66" type="coderapp.internal.interface.project.Input">
+                    <Name>vf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="67" type="coderapp.internal.interface.project.Input">
+                    <Name>af</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="68" type="coderapp.internal.interface.project.Input">
+                    <Name>tf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <InputTypeRecorderSettings id="69" type="coderapp.internal.interface.project.InputTypeRecorderSettings">
+                <UserSettings type="coderapp.internal.interface.project.InputTypeRecorderUserSettings"/>
+              </InputTypeRecorderSettings>
+              <SizeConstraints id="70" type="coderapp.internal.interface.project.SizeConstraints">
+                <Value type="coderapp.internal.interface.project.SizeConstraintsValue"/>
+              </SizeConstraints>
+              <Types id="71" type="coderapp.internal.codertype.TypeStore">
+                <Types id="5" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                </Types>
+              </Types>
+            </coderapp.internal.interface.project.Interface>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+    <layer id="matlabCoder" version="R2026a">
+      <parts>
+        <part role="matlabCoder">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2026a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2026b http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.mlc.mfz.MatlabCoderProjectState id="1" type="coderapp.internal.mlc.mfz.MatlabCoderProjectState">
+              <Activity id="2" type="coderapp.internal.mlc.mfz.MainBuildActivity">
+                <Compile>NOT_PLANNED</Compile>
+                <Generate>SUCCESS</Generate>
+                <TargetHardware>MATLAB Host Computer</TargetHardware>
+                <TargetLanguage>C</TargetLanguage>
+                <WorkflowTarget>LIB</WorkflowTarget>
+                <Result id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult"/>
+              </Activity>
+              <MainBuildResult id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult">
+                <WorkflowTarget>LIB</WorkflowTarget>
+                <LogDirectory>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives</LogDirectory>
+                <MainReport id="4" type="coderapp.internal.build.mfz.CodegenArtifact"/>
+                <Artifacts id="4" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <SubType>CODEGEN_REPORT</SubType>
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/html/report.mldatx</Path>
+                  </File>
+                  <Type>CODEGEN_REPORT</Type>
+                </Artifacts>
+                <Artifacts id="5" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/primitives.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="6" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/primitives.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="7" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/primitives_types.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="8" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rtGetInf.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="9" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rtGetInf.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="10" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rtGetNaN.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="11" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rtGetNaN.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="12" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rt_nonfinite.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="13" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rt_nonfinite.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="14" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/rtwtypes.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="15" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/examples/main.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="16" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/codegen/lib/primitives/examples/main.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <BuildFolder type="coderapp.internal.util.mfz.FileSpec"/>
+                <Success>true</Success>
+                <Timestamp>2026-10-16T21:31:28.768447</Timestamp>
+              </MainBuildResult>
+            </coderapp.internal.mlc.mfz.MatlabCoderProjectState>
+          </MF0>
+        </part>
+        <part role="standaloneConfig">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001" version="1.1">
+            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore">
+              <Values id="2" type="coderapp.internal.ext.ConfigEntry">
+                <Key>filePartitionMethod</Key>
+                <Data id="3" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>SingleFile</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="4" type="coderapp.internal.ext.ConfigEntry">
+                <Key>outputFile</Key>
+                <Data id="5" type="coderapp.internal.config.data.StringParamData">
+                  <Value>primitives</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+            </coderapp.internal.ext.ConfigStore>
+          </MF0>
+        </part>
+        <part role="mexConfig">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001" version="1.1">
+            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore"/>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+  </layers>
+</coderProject>

@@ -33,3 +33,39 @@ target_compile_options(basic_agent
 
 set_target_properties(basic_agent PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${AGENT_FOLDER})
 # ------------------------------------------------------------------------------------
+
+# --------------------------------Test Pass Primitive---------------------------------
+add_executable(test_primitive_pass
+    matlab/codegen/lib/primitives/rt_nonfinite.c
+    matlab/codegen/lib/primitives/primitives.c
+
+    log/screen_print.c
+    log/logvars.cc
+    preliminary_works/test_pass/test_primitive_pass.cc
+)
+
+target_link_libraries(test_primitive_pass agent_lib ${lib_ws32})
+
+target_compile_options(test_primitive_pass
+    PUBLIC -DNOT_INLINED -DSERVER
+)
+
+set_target_properties(test_primitive_pass PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${AGENT_FOLDER})
+
+# --------------------------------Test Stop Primitive---------------------------------
+add_executable(test_primitive_pass
+    matlab/codegen/lib/primitives/rt_nonfinite.c
+    matlab/codegen/lib/primitives/primitives.c
+
+    log/screen_print.c
+    log/logvars.cc
+    preliminary_works/test_pass/test_primitive_stop.cc
+)
+
+target_link_libraries(test_primitive_pass agent_lib ${lib_ws32})
+
+target_compile_options(test_primitive_pass
+    PUBLIC -DNOT_INLINED -DSERVER
+)
+
+set_target_properties(test_primitive_pass PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${AGENT_FOLDER})

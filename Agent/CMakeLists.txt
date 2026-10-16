@@ -9,6 +9,7 @@ include(lib/basic.cmake)
 
 include_directories(
         matlab/
+        matlab/codegen/lib/primitives
         lib
         log
 )

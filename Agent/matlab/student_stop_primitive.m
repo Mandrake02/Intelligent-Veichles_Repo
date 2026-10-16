@@ -7,7 +7,7 @@
 %
 %%
 
-function [coefs,maxsf,tf] = stop_primitive(v0,a0,sf)
+function [coefs,maxsf,tf] = student_stop_primitive(v0,a0,sf)
  if v0 <= 0 || sf == 0
      maxsf = 0;
      tf = 0;

@@ -53,7 +53,42 @@ int main(int argc, const char *argv[]) {
       manoeuvre_msg.data_struct.CycleNumber = scenario_msg.data_struct.CycleNumber;
       manoeuvre_msg.data_struct.Status = scenario_msg.data_struct.Status;
 
-      
+      double coeffs[6];
+      double smax;
+      double tf;
+      double acc = in->ALgtFild;
+      double vel = in->VLgtFild;
+      static double init_dist = in->TrfLightDist;
+      double sf = in->TrfLightDist;
+      double req_ped = 0;
+      double req_acc;
+
+      if(in->TrfLightDist < 80 && vel > 0) {
+        student_stop_primitive(vel, acc, sf, coeffs, &smax, &tf);
+        static double old_req_acc = acc;
+        double longGain = 20;
+        double j0 = coeffs[3];
+        double s0 = coeffs[4];
+        double cr0 = coeffs[5];
+        double tOffs = 0;
+        double jT0 = j0 + tOffs * s0 + 0.5 * tOffs * tOffs * cr0;
+        double jT1 = j0 + (DT + tOffs) * s0 + 0.5 * (DT+tOffs) * (DT+tOffs) * cr0;
+        req_acc = old_req_acc + longGain * (DT * (jT0+jT1) * 0.5);
+        old_req_acc = req_acc;
+
+        double P_gain = 0.02;
+        double I_gain = 1;
+        double error = req_acc - acc;
+        static double integral = 0;
+        integral = integral + error * DT;
+        req_ped = P_gain * error + I_gain * integral;
+      } else {
+        if(init_dist-in->TrfLightDist < 10) {
+          req_ped = 10.0;
+        } else {
+          req_ped = 0.0;
+        }
+      }
 
       // Log on file
       logger.log_var("logout", "time", in->ECUupTime);
@@ -61,19 +96,19 @@ int main(int argc, const char *argv[]) {
       logger.log_var("logout", "vel", vel);
       logger.log_var("logout", "acc", acc);
       logger.log_var("logout", "sf", sf);
-      logger.log_var("logout", "vmin", vmin);
-      logger.log_var("logout", "vmax", vmax);
-      logger.log_var("logout", "tmin", tmin);
-      logger.log_var("logout", "tmax", tmax);
+      // logger.log_var("logout", "vmin", vmin);
+      // logger.log_var("logout", "vmax", vmax);
+      // logger.log_var("logout", "tmin", tmin);
+      // logger.log_var("logout", "tmax", tmax);
       logger.log_var("logout", "req_acc", req_acc);
-      logger.log_var("logout", "req_vel", req_vel);
-      logger.log_var("logout", "C0", bestCoeff[0]);
-      logger.log_var("logout", "C1", bestCoeff[1]);
-      logger.log_var("logout", "C2", bestCoeff[2]);
-      logger.log_var("logout", "C3", bestCoeff[3]);
-      logger.log_var("logout", "C4", bestCoeff[4]);
-      logger.log_var("logout", "C5", bestCoeff[5]);
-      logger.log_var("logout", "T", bestT);
+      // logger.log_var("logout", "req_vel", req_vel);
+      logger.log_var("logout", "C0", coeffs[0]);
+      logger.log_var("logout", "C1", coeffs[1]);
+      logger.log_var("logout", "C2", coeffs[2]);
+      logger.log_var("logout", "C3", coeffs[3]);
+      logger.log_var("logout", "C4", coeffs[4]);
+      logger.log_var("logout", "C5", coeffs[5]);
+      // logger.log_var("logout", "T", bestT);
       logger.write_line("logout");
 
       // Print
@@ -81,7 +116,7 @@ int main(int argc, const char *argv[]) {
       printLogVar(message_id, "time", in->ECUupTime);
       printLogVar(message_id, "dist [m]", init_dist - in->TrfLightDist);
       printLogVar(message_id, "vel [m/s]", vel);
-      printLogVar(message_id, "req_vel [m/s^2]", req_vel);
+      // printLogVar(message_id, "req_vel [m/s^2]", req_vel);
       printLogVar(message_id, "req_ped [-]", req_ped);
 
       manoeuvre_msg.data_struct.RequestedAcc = req_ped;

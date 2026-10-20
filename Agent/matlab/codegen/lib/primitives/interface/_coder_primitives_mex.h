@@ -5,7 +5,7 @@
  * File: _coder_primitives_mex.h
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 16-Oct-2026 21:31:16
+ * C/C++ source code generated on  : 20-Oct-2026 11:52:32
  */
 
 #ifndef _CODER_PRIMITIVES_MEX_H
@@ -38,9 +38,19 @@ void unsafe_j_opt_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
 void unsafe_s_opt_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
                               const mxArray *prhs[7]);
 
+void unsafe_student_pass_primitive_j0_mexFunction(int32_T nlhs,
+                                                  mxArray *plhs[3],
+                                                  int32_T nrhs,
+                                                  const mxArray *prhs[5]);
+
 void unsafe_student_pass_primitive_mexFunction(int32_T nlhs, mxArray *plhs[6],
                                                int32_T nrhs,
                                                const mxArray *prhs[7]);
+
+void unsafe_student_stop_primitive_j0_mexFunction(int32_T nlhs,
+                                                  mxArray *plhs[3],
+                                                  int32_T nrhs,
+                                                  const mxArray *prhs[2]);
 
 void unsafe_student_stop_primitive_mexFunction(int32_T nlhs, mxArray *plhs[3],
                                                int32_T nrhs,

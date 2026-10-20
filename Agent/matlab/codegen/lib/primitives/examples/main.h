@@ -5,7 +5,7 @@
  * File: main.h
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 16-Oct-2026 21:31:16
+ * C/C++ source code generated on  : 20-Oct-2026 11:52:32
  */
 
 /*************************************************************************/
@@ -58,7 +58,11 @@ extern void main_s_opt(void);
 
 extern void main_student_pass_primitive(void);
 
+extern void main_student_pass_primitive_j0(void);
+
 extern void main_student_stop_primitive(void);
+
+extern void main_student_stop_primitive_j0(void);
 
 extern void main_total_cost(void);
 

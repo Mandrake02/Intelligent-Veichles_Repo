@@ -8,6 +8,10 @@
             <coderapp.internal.core.mfz.TestRepositoryState id="1" type="coderapp.internal.core.mfz.TestRepositoryState">
               <Tests type="coderapp.internal.core.mfz.TestSpec">
                 <Type>FILE</Type>
+                <Value>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/student_test_pass_stop_j0.m</Value>
+              </Tests>
+              <Tests type="coderapp.internal.core.mfz.TestSpec">
+                <Type>FILE</Type>
                 <Value>/Users/andreamalacarne/Desktop/Uni/Magistrale/SecondoAnno-PrimoSemestre/IntelligentVeichles-Papini/Progetto/Agent/matlab/student_test_other_functions.m</Value>
               </Tests>
               <Tests type="coderapp.internal.core.mfz.TestSpec">
@@ -296,13 +300,59 @@
                   <NumOutputs>1</NumOutputs>
                 </Signatures>
               </EntryPoints>
-              <InputTypeRecorderSettings id="69" type="coderapp.internal.interface.project.InputTypeRecorderSettings">
+              <EntryPoints id="69" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>student_stop_primitive_j0.m</Path>
+                </File>
+                <Name>student_stop_primitive_j0</Name>
+                <Signatures id="70" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="71" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="72" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>3</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <EntryPoints id="73" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>student_pass_primitive_j0.m</Path>
+                </File>
+                <Name>student_pass_primitive_j0</Name>
+                <Signatures id="74" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="75" type="coderapp.internal.interface.project.Input">
+                    <Name>v0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="76" type="coderapp.internal.interface.project.Input">
+                    <Name>a0</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="77" type="coderapp.internal.interface.project.Input">
+                    <Name>sf</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="78" type="coderapp.internal.interface.project.Input">
+                    <Name>vfmin</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="79" type="coderapp.internal.interface.project.Input">
+                    <Name>vfmax</Name>
+                    <Type id="5" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>3</NumOutputs>
+                </Signatures>
+              </EntryPoints>
+              <InputTypeRecorderSettings id="80" type="coderapp.internal.interface.project.InputTypeRecorderSettings">
                 <UserSettings type="coderapp.internal.interface.project.InputTypeRecorderUserSettings"/>
               </InputTypeRecorderSettings>
-              <SizeConstraints id="70" type="coderapp.internal.interface.project.SizeConstraints">
+              <SizeConstraints id="81" type="coderapp.internal.interface.project.SizeConstraints">
                 <Value type="coderapp.internal.interface.project.SizeConstraintsValue"/>
               </SizeConstraints>
-              <Types id="71" type="coderapp.internal.codertype.TypeStore">
+              <Types id="82" type="coderapp.internal.codertype.TypeStore">
                 <Types id="5" type="coderapp.internal.codertype.PrimitiveType">
                   <ClassName>double</ClassName>
                   <Size type="coderapp.internal.codertype.Dimension"/>
@@ -412,7 +462,7 @@
                 </Artifacts>
                 <BuildFolder type="coderapp.internal.util.mfz.FileSpec"/>
                 <Success>true</Success>
-                <Timestamp>2026-10-16T21:31:28.768447</Timestamp>
+                <Timestamp>2026-10-20T11:52:41.889101</Timestamp>
               </MainBuildResult>
             </coderapp.internal.mlc.mfz.MatlabCoderProjectState>
           </MF0>

@@ -5,7 +5,7 @@
  * File: primitives.h
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 16-Oct-2026 21:31:16
+ * C/C++ source code generated on  : 20-Oct-2026 11:52:32
  */
 
 #ifndef PRIMITIVES_H
@@ -43,8 +43,16 @@ extern void student_pass_primitive(double v0, double a0, double sf,
                                    double *T2, double coeffsT1[6], double *v1,
                                    double *T1);
 
+extern void student_pass_primitive_j0(double v0, double a0, double sf,
+                                      double vfmin, double vfmax,
+                                      double coefsj0[6], double *vfj0,
+                                      double *tfj0);
+
 extern void student_stop_primitive(double v0, double a0, double sf,
                                    double coefs[6], double *maxsf, double *tf);
+
+extern void student_stop_primitive_j0(double v0, double a0, double coefsj0[6],
+                                      double *sfj0, double *tfj0);
 
 extern double total_cost(double v0, double a0, double sf, double vf, double af,
                          double tf);

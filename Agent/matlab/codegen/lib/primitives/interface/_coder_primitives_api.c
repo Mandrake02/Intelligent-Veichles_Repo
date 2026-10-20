@@ -5,7 +5,7 @@
  * File: _coder_primitives_api.c
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 16-Oct-2026 21:31:16
+ * C/C++ source code generated on  : 20-Oct-2026 11:52:32
  */
 
 /* Include Files */
@@ -388,6 +388,48 @@ void student_pass_primitive_api(const mxArray *const prhs[7], int32_T nlhs,
 }
 
 /*
+ * Arguments    : const mxArray * const prhs[5]
+ *                int32_T nlhs
+ *                const mxArray *plhs[3]
+ * Return Type  : void
+ */
+void student_pass_primitive_j0_api(const mxArray *const prhs[5], int32_T nlhs,
+                                   const mxArray *plhs[3])
+{
+  emlrtStack st = {
+      NULL, /* site */
+      NULL, /* tls */
+      NULL  /* prev */
+  };
+  real_T(*coefsj0)[6];
+  real_T a0;
+  real_T sf;
+  real_T tfj0;
+  real_T v0;
+  real_T vfj0;
+  real_T vfmax;
+  real_T vfmin;
+  st.tls = emlrtRootTLSGlobal;
+  coefsj0 = (real_T(*)[6])mxMalloc(sizeof(real_T[6]));
+  /* Marshall function inputs */
+  v0 = emlrt_marshallIn(&st, emlrtAliasP(prhs[0]), "v0");
+  a0 = emlrt_marshallIn(&st, emlrtAliasP(prhs[1]), "a0");
+  sf = emlrt_marshallIn(&st, emlrtAliasP(prhs[2]), "sf");
+  vfmin = emlrt_marshallIn(&st, emlrtAliasP(prhs[3]), "vfmin");
+  vfmax = emlrt_marshallIn(&st, emlrtAliasP(prhs[4]), "vfmax");
+  /* Invoke the target function */
+  student_pass_primitive_j0(v0, a0, sf, vfmin, vfmax, *coefsj0, &vfj0, &tfj0);
+  /* Marshall function outputs */
+  plhs[0] = emlrt_marshallOut(*coefsj0);
+  if (nlhs > 1) {
+    plhs[1] = b_emlrt_marshallOut(vfj0);
+  }
+  if (nlhs > 2) {
+    plhs[2] = b_emlrt_marshallOut(tfj0);
+  }
+}
+
+/*
  * Arguments    : const mxArray * const prhs[3]
  *                int32_T nlhs
  *                const mxArray *plhs[3]
@@ -422,6 +464,42 @@ void student_stop_primitive_api(const mxArray *const prhs[3], int32_T nlhs,
   }
   if (nlhs > 2) {
     plhs[2] = b_emlrt_marshallOut(tf);
+  }
+}
+
+/*
+ * Arguments    : const mxArray * const prhs[2]
+ *                int32_T nlhs
+ *                const mxArray *plhs[3]
+ * Return Type  : void
+ */
+void student_stop_primitive_j0_api(const mxArray *const prhs[2], int32_T nlhs,
+                                   const mxArray *plhs[3])
+{
+  emlrtStack st = {
+      NULL, /* site */
+      NULL, /* tls */
+      NULL  /* prev */
+  };
+  real_T(*coefsj0)[6];
+  real_T a0;
+  real_T sfj0;
+  real_T tfj0;
+  real_T v0;
+  st.tls = emlrtRootTLSGlobal;
+  coefsj0 = (real_T(*)[6])mxMalloc(sizeof(real_T[6]));
+  /* Marshall function inputs */
+  v0 = emlrt_marshallIn(&st, emlrtAliasP(prhs[0]), "v0");
+  a0 = emlrt_marshallIn(&st, emlrtAliasP(prhs[1]), "a0");
+  /* Invoke the target function */
+  student_stop_primitive_j0(v0, a0, *coefsj0, &sfj0, &tfj0);
+  /* Marshall function outputs */
+  plhs[0] = emlrt_marshallOut(*coefsj0);
+  if (nlhs > 1) {
+    plhs[1] = b_emlrt_marshallOut(sfj0);
+  }
+  if (nlhs > 2) {
+    plhs[2] = b_emlrt_marshallOut(tfj0);
   }
 }
 

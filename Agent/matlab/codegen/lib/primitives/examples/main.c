@@ -5,7 +5,7 @@
  * File: main.c
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 16-Oct-2026 21:31:16
+ * C/C++ source code generated on  : 20-Oct-2026 11:52:32
  */
 
 /*************************************************************************/
@@ -73,6 +73,8 @@ You can call entry-point functions multiple times. */
   main_j_opt();
   main_total_cost();
   main_coef_list();
+  main_student_stop_primitive_j0();
+  main_student_pass_primitive_j0();
   /* Terminate the application.
 You do not need to do this more than one time. */
   primitives_terminate();
@@ -156,6 +158,23 @@ void main_student_pass_primitive(void)
  * Arguments    : void
  * Return Type  : void
  */
+void main_student_pass_primitive_j0(void)
+{
+  double coefsj0[6];
+  double tfj0;
+  double v0_tmp;
+  double vfj0;
+  /* Initialize function 'student_pass_primitive_j0' input arguments. */
+  v0_tmp = argInit_real_T();
+  /* Call the entry-point 'student_pass_primitive_j0'. */
+  student_pass_primitive_j0(v0_tmp, v0_tmp, v0_tmp, v0_tmp, v0_tmp, coefsj0,
+                            &vfj0, &tfj0);
+}
+
+/*
+ * Arguments    : void
+ * Return Type  : void
+ */
 void main_student_stop_primitive(void)
 {
   double coefs[6];
@@ -166,6 +185,22 @@ void main_student_stop_primitive(void)
   v0_tmp = argInit_real_T();
   /* Call the entry-point 'student_stop_primitive'. */
   student_stop_primitive(v0_tmp, v0_tmp, v0_tmp, coefs, &maxsf, &tf);
+}
+
+/*
+ * Arguments    : void
+ * Return Type  : void
+ */
+void main_student_stop_primitive_j0(void)
+{
+  double coefsj0[6];
+  double sfj0;
+  double tfj0;
+  double v0_tmp;
+  /* Initialize function 'student_stop_primitive_j0' input arguments. */
+  v0_tmp = argInit_real_T();
+  /* Call the entry-point 'student_stop_primitive_j0'. */
+  student_stop_primitive_j0(v0_tmp, v0_tmp, coefsj0, &sfj0, &tfj0);
 }
 
 /*

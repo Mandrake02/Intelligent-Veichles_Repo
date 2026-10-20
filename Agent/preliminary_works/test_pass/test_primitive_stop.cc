@@ -56,7 +56,9 @@ int main(int argc, const char *argv[]) {
       double coeffs[6];
       double smax;
       double tf;
-      double acc = in->ALgtFild;
+      double minAcc = -10;
+      double maxAcc = 5;
+      double acc = fmin(fmax(in->ALgtFild, minAcc), maxAcc);
       double vel = in->VLgtFild;
       static double init_dist = in->TrfLightDist;
       double sf = in->TrfLightDist;
@@ -65,7 +67,7 @@ int main(int argc, const char *argv[]) {
 
       if(in->TrfLightDist < 80 && vel > 0) {
         student_stop_primitive(vel, acc, sf, coeffs, &smax, &tf);
-        static double old_req_acc = acc;
+        static double old_req_acc = 0;
         double longGain = 20;
         double j0 = coeffs[3];
         double s0 = coeffs[4];
@@ -73,7 +75,7 @@ int main(int argc, const char *argv[]) {
         double tOffs = 0;
         double jT0 = j0 + tOffs * s0 + 0.5 * tOffs * tOffs * cr0;
         double jT1 = j0 + (DT + tOffs) * s0 + 0.5 * (DT+tOffs) * (DT+tOffs) * cr0;
-        req_acc = old_req_acc + longGain * (DT * (jT0+jT1) * 0.5);
+        req_acc = fmin(fmax((old_req_acc + longGain * (DT * (jT0+jT1) * 0.5)), minAcc), maxAcc);
         old_req_acc = req_acc;
 
         double P_gain = 0.02;

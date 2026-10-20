@@ -64,10 +64,11 @@ int main(int argc, const char *argv[]) {
       double sf = in->TrfLightDist;
       double req_ped = 0;
       double req_acc;
+      static double old_req_acc = 0;
+      static double integral = 0;
 
-      if(in->TrfLightDist < 80 && vel > 0) {
+      if(in->TrfLightDist < 80 && in->TrfLightDist > 0 && vel > 0) {
         student_stop_primitive(vel, acc, sf, coeffs, &smax, &tf);
-        static double old_req_acc = 0;
         double longGain = 20;
         double j0 = coeffs[3];
         double s0 = coeffs[4];
@@ -81,10 +82,11 @@ int main(int argc, const char *argv[]) {
         double P_gain = 0.02;
         double I_gain = 1;
         double error = req_acc - acc;
-        static double integral = 0;
         integral = integral + error * DT;
         req_ped = P_gain * error + I_gain * integral;
       } else {
+        integral = 0;
+        old_req_acc = 0;
         if(init_dist-in->TrfLightDist < 10) {
           req_ped = 10.0;
         } else {

@@ -15,6 +15,6 @@ function [coefsj0,sfj0,tfj0] = student_stop_primitive_j0(v0,a0)
     else 
         tfj0 = 0;
         sfj0 = 0;
-        coefsj0 = coef_list(0, 0, 0, 0, 0, 0);
+        coefsj0 = zeros(1, 6);
     end
 end

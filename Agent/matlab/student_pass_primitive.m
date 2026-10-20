@@ -37,7 +37,7 @@ function [coeffsT2, v2, T2, coeffsT1, v1, T1] = student_pass_primitive(v0, a0, s
         v2 = 0;
         T1 = 0;
         T2 = 0;
-        coeffsT1 = coef_list(0, 0, 0, 0, 0, 0);
-        coeffsT2 = coef_list(0, 0, 0, 0, 0, 0);
+        coeffsT1 = zeros(1, 6);
+        coeffsT2 = zeros(1, 6);
     end
 end

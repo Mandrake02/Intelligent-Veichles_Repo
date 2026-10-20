@@ -5,7 +5,7 @@
  * File: primitives.c
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 20-Oct-2026 11:52:32
+ * C/C++ source code generated on  : 20-Oct-2026 17:25:28
  */
 
 /* Include Files */
@@ -290,6 +290,7 @@ void student_pass_primitive(double v0, double a0, double sf, double vfmin,
 {
   double y;
   double y_tmp;
+  int i;
   /*  */
   /*            Agent Logic */
   /*          Pass Primitive */
@@ -396,8 +397,10 @@ void student_pass_primitive(double v0, double a0, double sf, double vfmin,
     *v2 = 0.0;
     *T1 = 0.0;
     *T2 = 0.0;
-    coef_list(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, coeffsT1);
-    coef_list(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, coeffsT2);
+    for (i = 0; i < 6; i++) {
+      coeffsT1[i] = 0.0;
+      coeffsT2[i] = 0.0;
+    }
   }
 }
 
@@ -420,6 +423,7 @@ void student_pass_primitive_j0(double v0, double a0, double sf, double vfmin,
   double T_idx_1;
   double t2;
   double t9;
+  int i;
   /*  */
   /*           Agent Logic */
   /*          Pass Primitive J0 */
@@ -462,7 +466,9 @@ void student_pass_primitive_j0(double v0, double a0, double sf, double vfmin,
     } else {
       *tfj0 = 0.0;
       *vfj0 = 0.0;
-      coef_list(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, coefsj0);
+      for (i = 0; i < 6; i++) {
+        coefsj0[i] = 0.0;
+      }
     }
   }
 }
@@ -479,6 +485,7 @@ void student_pass_primitive_j0(double v0, double a0, double sf, double vfmin,
 void student_stop_primitive(double v0, double a0, double sf, double coefs[6],
                             double *maxsf, double *tf)
 {
+  int i;
   /*  */
   /*           Agent Logic */
   /*          Stop Primitive */
@@ -487,7 +494,9 @@ void student_stop_primitive(double v0, double a0, double sf, double coefs[6],
   if ((v0 <= 0.0) || (sf == 0.0)) {
     *maxsf = 0.0;
     *tf = 0.0;
-    coef_list(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, coefs);
+    for (i = 0; i < 6; i++) {
+      coefs[i] = 0.0;
+    }
   } else {
     double d;
     double d1;
@@ -522,6 +531,7 @@ void student_stop_primitive(double v0, double a0, double sf, double coefs[6],
 void student_stop_primitive_j0(double v0, double a0, double coefsj0[6],
                                double *sfj0, double *tfj0)
 {
+  int i;
   /*  */
   /*            Agent Logic */
   /*          Stop Primitive J0 */
@@ -544,7 +554,9 @@ void student_stop_primitive_j0(double v0, double a0, double coefsj0[6],
   } else {
     *tfj0 = 0.0;
     *sfj0 = 0.0;
-    coef_list(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, coefsj0);
+    for (i = 0; i < 6; i++) {
+      coefsj0[i] = 0.0;
+    }
   }
 }
 

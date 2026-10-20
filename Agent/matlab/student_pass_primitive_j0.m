@@ -25,7 +25,7 @@ function [coefsj0, vfj0, tfj0] = student_pass_primitive_j0( v0, a0, sf, vfmin, v
         else 
             tfj0 = 0;
             vfj0 = 0;
-            coefsj0 = coef_list(0, 0, 0, 0, 0, 0);
+            coefsj0 = zeros(1, 6);
         end
     end
 end

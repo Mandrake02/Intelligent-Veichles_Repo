@@ -16,7 +16,7 @@ extern "C" {
 #include "logvars.h"
 
 // --- MATLAB PRIMITIVES INCLUDE ---
-// #include "primitives.h"
+#include "primitives.h"
 // --- MATLAB PRIMITIVES INCLUDE ---
 
 #define DEFAULT_SERVER_IP    "127.0.0.1"
@@ -28,6 +28,10 @@ extern "C" {
 static uint32_t server_run = 1;
 void intHandler(int signal) {
     server_run = 0;
+}
+
+void free_flow(double v0, double a0, double xf, double vr, double coeffsT[6], double *v, double *T) {
+    student_pass_primitive(v0, a0, xf, vr, vr, 0.0, 0.0, coeffsT, v, T, coeffsT, v, T);
 }
 
 int main(int argc, const char * argv[]) {
@@ -78,18 +82,143 @@ int main(int argc, const char * argv[]) {
             logger.log_var("Example", "vel", in->VLgtFild);
 
             // ADD AGENT CODE HERE
+            double v0 = in->VLgtFild;
+            double a0 = in->ALgtFild;
+
+            double look_ahead = fmax(50, 5*v0);
+
+            double vmin = 3.0;
+            double vmax = 15.0;
+            double minAcc = -10;
+            double maxAcc = 5;
+            double vr = in->RequestedCruisingSpeed;
+
+            double xs = 5.0;
+            double Ts = xs/vmin;
+            double xin = 10.0;
+            double Tin = xin/vmin;
+            double xtr = 0.0;
+            double xstop = 0.0;
+
+            double bestCoeffs[6];
+            double bestT = 0;
+            double bestv = 0;
+            double bests = 0;
+            double bestCoeffsT1[6];
+            double bestT1 = 0;
+            double bestv1 = 0;
+            double bestCoeffsT2[6];
+            double bestT2 = 0;
+            double bestv2 = 0;
+
+            double Tg = 0;
+            double Tr = 0;
+
+            double flag = 0;
+
+            if(in->NrTrfLights != 0) {
+                xtr = in->TrfLightDist;
+                xstop = in->TrfLightDist - xs/2;
+            }
+
+            if(in->NrTrfLights == 0 || xtr >= look_ahead) {
+                free_flow(v0, a0, look_ahead, vr, bestCoeffs, &bestv, &bestT);
+            } else {
+                switch(in->TrfLightCurrState) {
+                case 1:
+                    Tg = 0;
+                    Tr = in->TrfLightFirstTimeToChange - Tin - Ts;
+                    break;
+                case 2:
+                    Tg = in->TrfLightSecondTimeToChange + Ts;
+                    Tr = in->TrfLightThirdTimeToChange - Tin - Ts;
+                    break;
+                case 3:
+                    Tg = in->TrfLightFirstTimeToChange + Ts;
+                    Tr = in->TrfLightSecondTimeToChange - Tin - Ts;
+                    break;
+                default:
+                    Tg = 0;
+                    Tr = 0;
+                }
+                if(in->TrfLightCurrState == 1 && in->TrfLightDist <= xs) {
+                    free_flow(v0, a0, look_ahead, vr, bestCoeffs, &bestv, &bestT);
+                } else {
+                    student_pass_primitive(v0, a0, xtr, vmin, vmax, Tg, Tr, bestCoeffsT2, &bestv2, &bestT2, bestCoeffsT1, &bestv1, &bestT1);
+                    for(int i = 0; i<6; i++) {
+                        if(bestCoeffsT1[i] != 0 || bestCoeffsT2[i] != 0) {
+                            flag = 1;
+                        } 
+                    }
+                    if(flag == 1) {
+                        student_stop_primitive(v0, a0, xstop, bestCoeffs, &bests, &bestT);
+                    } else {
+                        if((bestCoeffsT1[3] <= 0 && bestCoeffsT2[3] >= 0) || (bestCoeffsT1[3] >= 0 && bestCoeffsT2[3] <= 0)) {
+                            student_pass_primitive_j0(v0, a0, xtr, vmin, vmax, bestCoeffs, &bestv, &bestT);
+                        } else {
+                            if(abs(bestCoeffsT1[3]) < abs(bestCoeffsT2[3])) {
+                                for(int i=0; i<6; i++) {
+                                    bestCoeffs[i] = bestCoeffsT1[i];
+                                }
+                                bestv = bestv1; 
+                                bestT = bestT1;
+                            } else {
+                                for(int i=0; i<6; i++) {
+                                    bestCoeffs[i] = bestCoeffsT2[i];
+                                }
+                                bestv = bestv2; 
+                                bestT = bestT2;
+                            }
+                        }
+                    }
+                }
+            }
 
             // ADD LOW LEVEL CONTROL CODE HERE
-            manoeuvre_msg.data_struct.RequestedAcc = 1.0;
-            manoeuvre_msg.data_struct.RequestedSteerWhlAg = 0.0;
+            static double old_req_acc = 0;
+            double longGain = 20;
+            double j0 = bestCoeffs[3];
+            double s0 = bestCoeffs[4];
+            double cr0 = bestCoeffs[5];
+            double tOffs = 0;
+            double jT0 = j0 + tOffs * s0 + 0.5 * tOffs * tOffs * cr0;
+            double jT1 = j0 + (DT + tOffs) * s0 + 0.5 * (DT+tOffs) * (DT+tOffs) * cr0;
+            double req_acc = fmin(fmax((old_req_acc + longGain * (DT * (jT0+jT1) * 0.5)), minAcc), maxAcc);
+            old_req_acc = req_acc;
+            double req_vel = v_opt(DT, v0, a0, bests, bestv, 0, bestT);
 
-            // Write log
-            logger.write_line("Example");
+            double P_gain = 0.02;
+            double I_gain = 1;
+            double error = req_acc - a0;
+            static double integral = 0;
+            integral = integral + error * DT;
+            double req_ped = P_gain * error + I_gain * integral;
 
-            // Screen print
-            printLogVar(message_id, "Time", num_seconds);
-            printLogVar(message_id, "Status", in->Status);
-            printLogVar(message_id, "CycleNumber", in->CycleNumber);
+            // Log on file
+            logger.log_var("logout", "time", in->ECUupTime);
+            logger.log_var("logout", "vel", v0);
+            logger.log_var("logout", "acc", a0);
+            logger.log_var("logout", "vmin", vmin);
+            logger.log_var("logout", "vmax", vmax);
+            logger.log_var("logout", "req_acc", req_acc);
+            logger.log_var("logout", "req_vel", req_vel);
+            logger.log_var("logout", "C0", bestCoeffs[0]);
+            logger.log_var("logout", "C1", bestCoeffs[1]);
+            logger.log_var("logout", "C2", bestCoeffs[2]);
+            logger.log_var("logout", "C3", bestCoeffs[3]);
+            logger.log_var("logout", "C4", bestCoeffs[4]);
+            logger.log_var("logout", "C5", bestCoeffs[5]);
+            logger.log_var("logout", "T", bestT);
+            logger.write_line("logout");
+            
+            // Print
+            printLogVar(message_id, "CycleNumber", scenario_msg.data_struct.CycleNumber);
+            printLogVar(message_id, "time", in->ECUupTime);
+            printLogVar(message_id, "vel [m/s]", v0);
+            printLogVar(message_id, "req_vel [m/s^2]", req_vel);
+            printLogVar(message_id, "req_ped [-]", req_ped);
+
+            manoeuvre_msg.data_struct.RequestedAcc = req_ped;
 
             // Send manoeuvre message to the environment
             if (server_send_to_client(server_run, message_id, &manoeuvre_msg.data_struct) == -1) {

@@ -9,7 +9,7 @@ include(lib/basic.cmake)
 
 include_directories(
         matlab/
-        matlab/codegen/lib/primitives
+        matlab/codegen/lib/primitives/
         lib
         log
 )
@@ -20,6 +20,8 @@ link_directories(
 
 # ------------------------------- basic agent ------------------------------------
 add_executable(basic_agent
+        matlab/codegen/lib/primitives/rt_nonfinite.c
+        matlab/codegen/lib/primitives/primitives.c
         log/screen_print.c
         log/logvars.cc
         starting_point.cc

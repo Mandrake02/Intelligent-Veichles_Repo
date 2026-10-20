@@ -5,7 +5,7 @@
  * File: _coder_primitives_mex.h
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 20-Oct-2026 11:52:32
+ * C/C++ source code generated on  : 20-Oct-2026 17:25:28
  */
 
 #ifndef _CODER_PRIMITIVES_MEX_H

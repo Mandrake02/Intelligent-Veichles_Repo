@@ -5,7 +5,7 @@
  * File: primitives.h
  *
  * MATLAB Coder version            : 26.2
- * C/C++ source code generated on  : 20-Oct-2026 17:25:28
+ * C/C++ source code generated on  : 21-Oct-2026 13:01:53
  */
 
 #ifndef PRIMITIVES_H

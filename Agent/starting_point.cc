@@ -31,7 +31,7 @@ void intHandler(int signal) {
 }
 
 void free_flow(double v0, double a0, double xf, double vr, double coeffsT[6], double *v, double *T) {
-    student_pass_primitive(v0, a0, xf, vr, vr, 0.0, 0.0, coeffsT, v, T, coeffsT, v, T);
+    student_pass_primitive(v0, a0, xf, vr, vr, 1.0, 100.0, coeffsT, v, T, coeffsT, v, T);
 }
 
 int main(int argc, const char * argv[]) {
@@ -137,9 +137,9 @@ int main(int argc, const char * argv[]) {
                     Tg = in->TrfLightFirstTimeToChange + Ts;
                     Tr = in->TrfLightSecondTimeToChange - Tin - Ts;
                     break;
-                default:
-                    Tg = 0;
-                    Tr = 0;
+                // default:
+                //     Tg = 0;
+                //     Tr = 0;
                 }
                 if(in->TrfLightCurrState == 1 && in->TrfLightDist <= xs) {
                     free_flow(v0, a0, look_ahead, vr, bestCoeffs, &bestv, &bestT);
@@ -150,7 +150,7 @@ int main(int argc, const char * argv[]) {
                             flag = 1;
                         } 
                     }
-                    if(flag == 1) {
+                    if(flag == 0) {
                         student_stop_primitive(v0, a0, xstop, bestCoeffs, &bests, &bestT);
                     } else {
                         if((bestCoeffsT1[3] <= 0 && bestCoeffsT2[3] >= 0) || (bestCoeffsT1[3] >= 0 && bestCoeffsT2[3] <= 0)) {
@@ -176,23 +176,34 @@ int main(int argc, const char * argv[]) {
 
             // ADD LOW LEVEL CONTROL CODE HERE
             static double old_req_acc = 0;
-            double longGain = 20;
-            double j0 = bestCoeffs[3];
-            double s0 = bestCoeffs[4];
-            double cr0 = bestCoeffs[5];
-            double tOffs = 0;
-            double jT0 = j0 + tOffs * s0 + 0.5 * tOffs * tOffs * cr0;
-            double jT1 = j0 + (DT + tOffs) * s0 + 0.5 * (DT+tOffs) * (DT+tOffs) * cr0;
-            double req_acc = fmin(fmax((old_req_acc + longGain * (DT * (jT0+jT1) * 0.5)), minAcc), maxAcc);
-            old_req_acc = req_acc;
-            double req_vel = v_opt(DT, v0, a0, bests, bestv, 0, bestT);
-
-            double P_gain = 0.02;
-            double I_gain = 1;
-            double error = req_acc - a0;
             static double integral = 0;
-            integral = integral + error * DT;
-            double req_ped = P_gain * error + I_gain * integral;
+            double req_acc = 0.0;
+            double req_vel = v0;
+            double req_ped = 0;
+            if(bestT <= 0) {
+                old_req_acc = 0;
+                integral = 0;
+                req_acc = 0;
+                req_vel = v0;
+                req_ped = 0;
+            } else {
+                double longGain = 20;
+                double j0 = bestCoeffs[3];
+                double s0 = bestCoeffs[4];
+                double cr0 = bestCoeffs[5];
+                double tOffs = 0;
+                double jT0 = j0 + tOffs * s0 + 0.5 * tOffs * tOffs * cr0;
+                double jT1 = j0 + (DT + tOffs) * s0 + 0.5 * (DT+tOffs) * (DT+tOffs) * cr0;
+                req_acc = fmin(fmax((old_req_acc + longGain * (DT * (jT0+jT1) * 0.5)), minAcc),  maxAcc);
+                old_req_acc = req_acc;
+                req_vel = v_opt(DT, v0, a0, bests, bestv, 0, bestT);
+
+                double P_gain = 0.02;
+                double I_gain = 1;
+                double error = req_acc - a0;
+                integral = integral + error * DT;
+                req_ped = P_gain * error + I_gain * integral; 
+            }
 
             // Log on file
             logger.log_var("logout", "time", in->ECUupTime);
@@ -214,6 +225,8 @@ int main(int argc, const char * argv[]) {
             // Print
             printLogVar(message_id, "CycleNumber", scenario_msg.data_struct.CycleNumber);
             printLogVar(message_id, "time", in->ECUupTime);
+            printLogVar(message_id, "xtr-look", xtr-look_ahead);
+            printLogVar(message_id, "xs-trfligthdist", xs/2-in->TrfLightDist);
             printLogVar(message_id, "vel [m/s]", v0);
             printLogVar(message_id, "req_vel [m/s^2]", req_vel);
             printLogVar(message_id, "req_ped [-]", req_ped);

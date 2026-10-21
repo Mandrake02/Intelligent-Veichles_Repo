@@ -25,8 +25,13 @@ function [coeffsT2, v2, T2, coeffsT1, v1, T1] = student_pass_primitive(v0, a0, s
             Tvmax = 0;
         end
     end
-    T1 = max(Tmin, Tvmax);
-    T2 = min(Tmax, Tvmin);
+    if Tvmax > Tmax || Tmin > Tvmin
+        T1 = 0;
+        T2 = 0;
+    else
+        T1 = max(Tmin, Tvmax);
+        T2 = min(Tmax, Tvmin);
+    end
     if T1 > 0 && T1 <= T2
         v1 = final_opt_vel_pass(v0, a0, sf, T1);
         v2 = final_opt_vel_pass(v0, a0, sf, T2);

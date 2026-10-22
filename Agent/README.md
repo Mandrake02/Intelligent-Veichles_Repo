@@ -72,11 +72,11 @@ pacman -S mingw-w64-x86_64-make
      ```
      2. run cmake:
      ```bash
-   cmake -G "MSYS Makefiles" -B build
+     cmake -G "MSYS Makefiles" -B build
      ```
      3. Build the agent:
      ```bash
-   cmake --build build
+     cmake --build build
      ```
 5. Run the agent from the `Agent` directory:
 ```bash
@@ -102,10 +102,10 @@ sudo apt-get install clang
       cmake -B build
       cmake --build build
       ```
-   5. Run the agent from the `Agent` directory:
-   ```bash
-   ./bin/basic_agent
-   ```
+5. Run the agent from the `Agent` directory:
+```bash
+./bin/basic_agent
+```
 
 ### MacOs
 1. Open a shell and run:
@@ -126,7 +126,7 @@ brew install clang
       cmake -B build
       cmake --build build
       ```
-   5. Run the agent from the `Agent` directory:
-   ```bash
-   ./bin/basic_agent
-   ```
+5. Run the agent from the `Agent` directory:
+```bash
+./bin/basic_agent
+```

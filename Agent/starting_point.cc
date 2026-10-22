@@ -99,6 +99,7 @@ int main(int argc, const char * argv[]) {
             double Tin = xin/vmin;
             double xtr = 0.0;
             double xstop = 0.0;
+            static double init_dist = in->TrfLightDist;
 
             double bestCoeffs[6];
             double bestT = 0;
@@ -207,8 +208,10 @@ int main(int argc, const char * argv[]) {
 
             // Log on file
             logger.log_var("logout", "time", in->ECUupTime);
+            logger.log_var("logout", "dist", init_dist - in->TrfLightDist);
             logger.log_var("logout", "vel", v0);
             logger.log_var("logout", "acc", a0);
+            logger.log_var("logout", "sf", in->TrfLightDist);
             logger.log_var("logout", "vmin", vmin);
             logger.log_var("logout", "vmax", vmax);
             logger.log_var("logout", "req_acc", req_acc);
